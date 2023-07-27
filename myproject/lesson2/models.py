@@ -9,6 +9,9 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     age = models.IntegerField()
 
+    def __str__(self):
+        return f'id: {self.id}, Username: {self.name}, email: {self.email}, age: {self.age}'
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
