@@ -8,6 +8,7 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
     age = models.IntegerField()
+    new_field = models.CharField(max_length=100)
 
     def __str__(self):
         return f'id: {self.id}, Username: {self.name}, email: {self.email}, age: {self.age}'
@@ -25,3 +26,20 @@ class Order(models.Model):
     products = models.ManyToManyField(Product)
     date_ordered = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f'Name: {self.name}, email: {self.email}'
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Title is {self.title}'
