@@ -42,4 +42,4 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Title is {self.title}'
+        return f'Title is {self.title} {self.author=}'
