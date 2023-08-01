@@ -39,7 +39,11 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="posts")
 
     def __str__(self):
         return f'Title is {self.title} {self.author=}'
+
+    def get_summary(self):
+        words = self.content.split()
+        return f'{" ".join(words[:5])}...'

@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
+from lesson2.models import Post, Author
 
 
 class HelloView(View):
@@ -61,3 +62,15 @@ class TemplFor(TemplateView):
         }
         context.update({'my_list': my_list, 'my_dict': my_dict})
         return context
+
+
+def author_posts(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)
+    posts = author.posts.order_by('-id')[:5]
+    # posts = Post.objects.filter(author=author).order_by('-id')[:5]
+    return render(request, 'lesson3/author_posts.html', {'author': author, 'posts': posts})
+
+
+def post_full(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'lesson3/post_full.html', {'post': post})
