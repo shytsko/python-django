@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views import View
+from django.views.generic import TemplateView
 
 
 class HelloView(View):
@@ -31,3 +32,13 @@ def hello(request, name):
         'name': name
     }
     return render(request, 'lesson3/my_template.html', context)
+
+
+class TemplIf(TemplateView):
+    template_name = "lesson3/if_template.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = "Привет, мир!"
+        # context['number'] = 3
+        return context
