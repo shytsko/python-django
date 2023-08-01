@@ -3,10 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 
 
-def hello(request):
-    return HttpResponse("Hello from function")
-
-
 class HelloView(View):
     def get(self, request):
         return HttpResponse("Hello from class")
@@ -28,3 +24,10 @@ def posts_detail(request, year, month, slug):
         'slug': slug
     }
     return JsonResponse(response, json_dumps_params={'ensure_ascii': False})
+
+
+def hello(request, name):
+    context = {
+        'name': name
+    }
+    return render(request, 'lesson3/my_template.html', context)
