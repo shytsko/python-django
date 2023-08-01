@@ -42,3 +42,22 @@ class TemplIf(TemplateView):
         context['message'] = "Привет, мир!"
         # context['number'] = 3
         return context
+
+
+class TemplFor(TemplateView):
+    template_name = "lesson3/for_template.html"
+
+    def get_context_data(self, **kwargs):
+        context: dict = super().get_context_data(**kwargs)
+        my_list = ['apple', 'banana', 'orange']
+        my_dict = {
+            'каждый': 'красный',
+            'охотник': 'оранжевый',
+            'желает': 'жёлтый',
+            'знать': 'зелёный',
+            'где': 'голубой',
+            'сидит': 'синий',
+            'фазан': 'фиолетовый',
+        }
+        context.update({'my_list': my_list, 'my_dict': my_dict})
+        return context
