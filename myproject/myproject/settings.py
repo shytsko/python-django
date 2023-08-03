@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'lesson1',
     'lesson2',
     'lesson3',
+    'lesson4',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,11 @@ LOGGING = {
         },
         'lesson2': {
             'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'lesson4': {
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
         },
