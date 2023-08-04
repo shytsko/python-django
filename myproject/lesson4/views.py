@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 import logging
-from .forms import UserForm, ManyFieldsForm
+from .forms import UserForm, ManyFieldsForm, ManyFieldsFormWidget
 
 logger = logging.getLogger(__name__)
 
@@ -22,9 +22,9 @@ def user_form(request):
 
 def many_fields_form(request):
     if request.method == 'POST':
-        form = ManyFieldsForm(request.POST)
+        form = ManyFieldsFormWidget(request.POST)
         if form.is_valid():
             logger.info(f'Получили {form.cleaned_data=}')
     else:
-        form = ManyFieldsForm()
+        form = ManyFieldsFormWidget()
     return render(request, 'lesson4/many_fields_form.html', {'form': form})
