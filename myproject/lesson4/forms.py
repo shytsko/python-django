@@ -30,3 +30,7 @@ class ManyFieldsFormWidget(forms.Form):
     gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')],
                                widget=forms.RadioSelect(attrs={'class': 'form-check-input'}))
     message = forms.CharField(required=True, widget=forms.Textarea(attrs={'class': 'form-control'}))
+
+
+class ImageForm(forms.Form):
+    image = forms.ImageField()
